@@ -6,61 +6,82 @@ export default function App() {
 
   const [cityName, setCityName] = useState('');
   const [country, setCountry] = useState('');
-  const [iconCode, setIconCode] = useState('01d');
+  const [iconCode, setIconCode] = useState('');
   const [weatherInfo, setWeatherInfo] = useState('');
   const [tempInfo, setTempInfo] = useState('30');
 
-  async function getWeather() {
+  async function getWeather(city) {
     try{
-      const request = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=07a0baef953a80bd63e028944503d24b`);
+      const request = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=07a0baef953a80bd63e028944503d24b`);
       const data = await request.json();
       setIconCode(data.weather[0].icon)
       setWeatherInfo(data.weather[0].description)
-      setCountry(data.sys.country)
+      getCountryName(data.sys.country)
       setTempInfo((data.main.temp - 273.15).toFixed(1))
     } catch {
-      setWeatherInfo("City not found!")
-      setCountry("")
+      setWeatherInfo('')
+      setCountry('')
+      setIconCode('')
+      setTempInfo('')
     }
+  }
+  
+  async function getCountryName(countryAbbr) {
+    try{
+    const request = await fetch(`https://restcountries.eu/rest/v2/alpha?codes=${countryAbbr}`)
+    const data = await request.json();
+    setCountry(data[0].name)
+  } catch {
+    console.log("country name issue")
+  }}
+
+  function mainText() {
+    if (cityName) {
+      return <View style={styles.container}>      
+        <Text style={styles.container}>
+          The current weather in{"\n"}
+        </Text>
+        <Text style={styles.weather}>
+          {cityName}
+        </Text>
+        <Text style={styles.weather}>
+          {country}{"\n"}
+        </Text>
+        <Text style={styles.container}>
+          is{"\n"}
+        </Text>
+        <Text style={styles.weather}>
+          {tempInfo}°C{"\n"}
+        </Text>
+        <Text style={styles.container}>
+          with{"\n"}
+        </Text>
+        <Text style={styles.weather}>
+          {weatherInfo}
+        </Text>     
+        <WeatherIcon input={iconCode} />
+    </View>
+    }
+
   }
 
   return (
     <View style={styles.container}>
 
+      <Text 
+          style={styles.title}>
+          I'd Rather Be In
+      </Text>     
+
       <TextInput 
         style={styles.textInput}
+        textAlign={'center'}
         placeholder="Enter a city!"
-        onChangeText={cityName => { setCountry(""), setCityName(cityName)}}
-      />
-      <Button 
-        onPress={getWeather}
-        title="Submit"
+        onChangeText={input => { setCityName(input), getWeather(input) } }
       />
 
-      <Text style={styles.container}>
-        The current weather in{"\n"}
-      </Text>
-      <Text style={styles.weather}>
-        {cityName}
-      </Text>
-      <Text style={styles.weather}>
-        {country}{"\n"}
-      </Text>
-      <Text style={styles.container}>
-        is{"\n"}
-      </Text>
-      <Text style={styles.weather}>
-        {tempInfo}°C{"\n"}
-      </Text>
-      <Text style={styles.container}>
-        with{"\n"}
-      </Text>
-      <Text style={styles.weather}>
-        {weatherInfo}
-      </Text>
-      <View>
-        <WeatherIcon input={iconCode} />
-      </View>
+      {mainText()}
+
       <Text style={styles.attribution}> 
         Icons made by{" "}
         <Text onPress={() => Linking.openURL('https://www.flaticon.com/authors/freepik')}>
@@ -77,6 +98,9 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  title:{
+    fontSize:50,
+  },
   container: {
     backgroundColor: '#fff',
     alignItems: 'center',
@@ -85,8 +109,8 @@ const styles = StyleSheet.create({
   textInput:{
     borderColor:"gray",
     borderWidth:1,
-    marginTop:50,
     padding:20,
+    alignItems:'center'
   },
   weather:{
     fontSize:30,
