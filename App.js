@@ -6,16 +6,35 @@ export default function App() {
 
   const [cityName, setCityName] = useState('');
   const [country, setCountry] = useState('');
+  const [countryCode, setCountryCode] = useState('');
   const [iconCode, setIconCode] = useState('');
   const [weatherInfo, setWeatherInfo] = useState('');
   const [tempInfo, setTempInfo] = useState('30');
 
-  async function getWeather(city) {
+  async function getWeatherByCity(city) {
     try{
       const request = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=07a0baef953a80bd63e028944503d24b`);
       const data = await request.json();
       setIconCode(data.weather[0].icon)
       setWeatherInfo(data.weather[0].description)
+      setCountryCode(data.sys.country)
+      getCountryName(data.sys.country)
+      setTempInfo((data.main.temp - 273.15).toFixed(1))
+    } catch {
+      setWeatherInfo('')
+      setCountry('')
+      setIconCode('')
+      setTempInfo('')
+    }
+  }
+
+  async function getWeatherByCountry(country) {
+    try{
+      const request = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName},${country}&appid=07a0baef953a80bd63e028944503d24b`);
+      const data = await request.json();
+      setIconCode(data.weather[0].icon)
+      setWeatherInfo(data.weather[0].description)
+      setCountryCode(data.sys.country)
       getCountryName(data.sys.country)
       setTempInfo((data.main.temp - 273.15).toFixed(1))
     } catch {
@@ -37,7 +56,7 @@ export default function App() {
 
   function mainText() {
     if (cityName) {
-      return <View style={styles.container}>      
+      return <View style={styles.container}>    
         <Text style={styles.container}>
           The current weather in{"\n"}
         </Text>
@@ -77,8 +96,15 @@ export default function App() {
         style={styles.textInput}
         textAlign={'center'}
         placeholder="Enter a city!"
-        onChangeText={input => { setCityName(input), getWeather(input) } }
+        onChangeText={input => { setCityName(input), getWeatherByCity(input) } }
       />
+
+      <TextInput 
+        style={styles.textInput}
+        textAlign={'center'}
+        placeholder={country}
+        onChangeText={input => { setCountry(input), getWeatherByCountry(input) } }
+      />  
 
       {mainText()}
 
