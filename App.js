@@ -1,19 +1,20 @@
 import  React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, Image, Linking } from 'react-native';
 import WeatherIcon from './components/icons.js';
+import CustomDropdown from './components/dropdown'
 
 export default function App() {
 
   const [cityName, setCityName] = useState('');
   const [country, setCountry] = useState('');
-  const [countryCode, setCountryCode] = useState('');
+  const [countryCode, setCountryCode] = useState('Country');
   const [iconCode, setIconCode] = useState('');
   const [weatherInfo, setWeatherInfo] = useState('');
   const [tempInfo, setTempInfo] = useState('30');
 
   async function getWeatherByCity(city) {
     try{
-      const request = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=07a0baef953a80bd63e028944503d24b`);
+      const request = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}`);
       const data = await request.json();
       setIconCode(data.weather[0].icon)
       setWeatherInfo(data.weather[0].description)
@@ -39,7 +40,6 @@ export default function App() {
       setTempInfo((data.main.temp - 273.15).toFixed(1))
     } catch {
       setWeatherInfo('')
-      setCountry('')
       setIconCode('')
       setTempInfo('')
     }
@@ -95,28 +95,30 @@ export default function App() {
       <TextInput 
         style={styles.textInput}
         textAlign={'center'}
-        placeholder="Enter a city!"
+        placeholder="City"
         onChangeText={input => { setCityName(input), getWeatherByCity(input) } }
       />
 
       <TextInput 
         style={styles.textInput}
         textAlign={'center'}
-        placeholder={country}
+        placeholder={countryCode}
         onChangeText={input => { setCountry(input), getWeatherByCountry(input) } }
-      />  
+      /> 
+
+      {/* <CustomDropdown /> */}
 
       {mainText()}
 
       <Text style={styles.attribution}> 
         Icons made by{" "}
         <Text onPress={() => Linking.openURL('https://www.flaticon.com/authors/freepik')}>
-         Freepik{" "}
+          Freepik{" "}
         </Text>
-         from{" "}
+          from{" "}
         <Text onPress={() => Linking.openURL('https://www.flaticon.com')}>
-         www.flaticon.com
-      </Text>
+          www.flaticon.com
+        </Text>
       </Text>
       </View>
 
