@@ -1,7 +1,7 @@
 import  React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, Image, Linking } from 'react-native';
 import WeatherIcon from './components/icons.js';
-import CustomDropdown from './components/dropdown'
+import CountrySelect from './components/country-select'
 
 export default function App() {
 
@@ -14,7 +14,7 @@ export default function App() {
 
   async function getWeatherByCity(city) {
     try{
-      const request = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}`);
+      const request = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=07a0baef953a80bd63e028944503d24b`);
       const data = await request.json();
       setIconCode(data.weather[0].icon)
       setWeatherInfo(data.weather[0].description)
@@ -106,7 +106,7 @@ export default function App() {
         onChangeText={input => { setCountry(input), getWeatherByCountry(input) } }
       /> 
 
-      {/* <CustomDropdown /> */}
+      <CountrySelect />
 
       {mainText()}
 
