@@ -11,7 +11,7 @@ export default class CountrySelect extends React.Component {
         return(
             <View>
                 <RNPickerSelect
-                    onValueChange={(value) =>  this.props.onChange(value)}
+                    onValueChange={(value) => this.props.onChange(value)}
                     items={[
                         {label: 'Canada', value: 'CA'},
                         {label: 'United States', value: 'US'},  
@@ -257,7 +257,7 @@ export default class CountrySelect extends React.Component {
                         {label: 'Zambia			   	   	       ', value: 'ZM'},
                         {label: 'Zimbabwe			   	   	     ', value: 'ZW'}
                     ]}
-                    placeholder={{label:"Select a Country",value:null}}
+                    placeholder={{label:"Select a Country",value:undefined}}
         />
             </View>
         )

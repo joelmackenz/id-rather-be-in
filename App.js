@@ -11,6 +11,7 @@ export default function App() {
   const [iconCode, setIconCode] = useState('');
   const [weatherInfo, setWeatherInfo] = useState('');
   const [tempInfo, setTempInfo] = useState('30');
+  const [errorMessage, setErrorMessage] = useState('')
 
   async function getWeatherByCity(city) {
     try{
@@ -21,6 +22,7 @@ export default function App() {
       setCountryCode(data.sys.country)
       getCountryName(data.sys.country)
       setTempInfo((data.main.temp - 273.15).toFixed(1))
+      setErrorMessage('')
     } catch {
       setWeatherInfo('')
       setCountry('')
@@ -38,10 +40,12 @@ export default function App() {
       setCountryCode(data.sys.country)
       getCountryName(data.sys.country)
       setTempInfo((data.main.temp - 273.15).toFixed(1))
+      setErrorMessage('')
     } catch {
       setWeatherInfo('')
       setIconCode('')
       setTempInfo('')
+      setErrorMessage(`is not found. Check your spelling and country code and try again.`)
     }
   }
   
@@ -50,8 +54,10 @@ export default function App() {
     const request = await fetch(`https://restcountries.eu/rest/v2/alpha?codes=${countryAbbr}`)
     const data = await request.json();
     setCountry(data[0].name)
+    setErrorMessage('')
   } catch {
-    console.log("country name issue")
+    setErrorMessage('Country Code not found. Check your spelling or use the dropdown menu.')
+    console.log("getCountryCode error")
   }}
 
   function mainText() {
@@ -66,25 +72,29 @@ export default function App() {
         <Text style={styles.weather}>
           {country}{"\n"}
         </Text>
-        <Text style={styles.container}>
-          is{"\n"}
-        </Text>
-        <Text style={styles.weather}>
-          {tempInfo}°C{"\n"}
-        </Text>
-        <Text style={styles.container}>
-          with{"\n"}
-        </Text>
-        <Text style={styles.weather}>
-          {weatherInfo}
-        </Text>     
-        <WeatherIcon input={iconCode} />
+        {locationSuccess()}
     </View>
     }
   }
 
-  function selectCountry(countryCode) {
-    setCountryCode(countryCode)
+  function locationSuccess(){
+    if (weatherInfo) {
+      return  <View style={styles.container}>
+                  <Text style={styles.container}>
+                    is{"\n"}
+                  </Text>
+                  <Text style={styles.weather}>
+                    {tempInfo}°C{"\n"}
+                  </Text>
+                  <Text style={styles.container}>
+                    with{"\n"}
+                  </Text>
+                  <Text style={styles.weather}>
+                    {weatherInfo}
+                  </Text>     
+                  <WeatherIcon input={iconCode} />
+              </View>
+      }
   }
 
   return (
@@ -109,9 +119,13 @@ export default function App() {
         onChangeText={input => { setCountry(input), getWeatherByCountry(input) } }
       /> 
 
-      <CountrySelect onChange={selectCountry}/>
+      <CountrySelect onChange={(e) => {setCountryCode(e), getCountryName(e), getWeatherByCountry(e)}}/>
 
       {mainText()}
+
+      <Text style={styles.errorMessage}>
+        {errorMessage}
+      </Text>
 
       <Text style={styles.attribution}> 
         Icons made by{" "}
@@ -150,5 +164,11 @@ const styles = StyleSheet.create({
     position:'absolute',
     bottom:-200,
     fontSize:10,
+  },
+  errorMessage:{
+    marginTop:10,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    fontSize:20,
   }
 });
