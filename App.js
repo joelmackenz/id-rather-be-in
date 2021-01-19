@@ -7,7 +7,7 @@ export default function App() {
 
   const [cityName, setCityName] = useState('');
   const [country, setCountry] = useState('');
-  const [countryCode, setCountryCode] = useState('Country');
+  const [countryCode, setCountryCode] = useState('Country ISO code');
   const [iconCode, setIconCode] = useState('');
   const [weatherInfo, setWeatherInfo] = useState('');
   const [tempInfo, setTempInfo] = useState('30');
@@ -81,7 +81,10 @@ export default function App() {
         <WeatherIcon input={iconCode} />
     </View>
     }
+  }
 
+  function selectCountry(countryCode) {
+    setCountryCode(countryCode)
   }
 
   return (
@@ -106,7 +109,7 @@ export default function App() {
         onChangeText={input => { setCountry(input), getWeatherByCountry(input) } }
       /> 
 
-      <CountrySelect />
+      <CountrySelect onChange={selectCountry}/>
 
       {mainText()}
 

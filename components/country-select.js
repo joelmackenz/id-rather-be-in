@@ -1,319 +1,506 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
 export default class CountrySelect extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render(){
         return(
             <View>
                 <RNPickerSelect
-                    onValueChange={(value) => console.log(value)}
+                    onValueChange={(value) =>  this.props.onChange(value)}
                     items={[
-                        { label: 'Canada', value: 'CA' },
-                        { label: 'United States', value: 'US' },
-                        { label: 'Afghanistan', value: 'AF' },
-                        { label: 'Albania', value: 'AL' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
+                        {label: 'Canada', value: 'CA'},
+                        {label: 'United States', value: 'US'},  
+                        {label: '--', value: null},
+                        {label: 'Afghanistan	   	        ',  value: 'AF'},
+                        {label: 'Albania	   	            ',  value: 'AL'},
+                        {label: 'Algeria	   	            ',  value: 'DZ'},
+                        {label: 'American Samoa		   	    ',  value: 'AS'},
+                        {label: 'Andorra',                      value: 'AD'},
+                        {label: 'Angola		   	            ',  value: 'AO'},
+                        {label: 'Anguilla		   	        ',  value: 'AI'},
+                        {label: 'Antarctica		   	        ',  value: 'AQ'},
+                        {label: 'Antigua and Barbuda		',  value: 'AG'},
+                        {label: 'Argentina		   	        ',  value: 'AR'},
+                        {label: 'Armenia		   	        ',  value: 'AM'},
+                        {label: 'Aruba		   	            ',  value: 'AW'},
+                        {label: 'Australia		   	        ',  value: 'AU'},
+                        {label: 'Austria		   	        ',  value: 'AT'},
+                        {label: 'Azerbaijan		   	       	',  value: 'AZ'},
+                        {label: 'Bahamas		   	        ',  value: 'BS'},
+                        {label: 'Bahrain		   	        ',  value: 'BH'},
+                        {label: 'Bangladesh		   	        ',  value: 'BD'},
+                        {label: 'Barbados		   	        ',  value: 'BB'},
+                        {label: 'Belarus			   	    ',  value: 'BY'},
+                        {label: 'Belgium			   	    ',  value: 'BE'},
+                        {label: 'Belize			   	        ',  value: 'BZ'},
+                        {label: 'Benin			   	        ',  value: 'BJ'},
+                        {label: 'Bermuda			   	    ',  value: 'BM'},
+                        {label: 'Bhutan			   	        ',  value: 'BT'},
+                        {label: 'Bolivia			   	    ',  value: 'BO'},
+                        {label: 'Bosnia and Herzegovina		',  value: 'BA'},
+                        {label: 'Botswana		   	        ',  value: 'BW'},
+                        {label: 'Brazil		   	            ',  value: 'BR'},
+                        {label: 'British Indian Ocean Territory',     value: 'IO'},
+                        {label: 'British Virgin Islands		',  value: 'VG'},
+                        {label: 'Brunei		   	            ',  value: 'BN'},
+                        {label: 'Bulgaria		   	        ',  value: 'BG'},
+                        {label: 'Burkina Faso		        ',  value: 'BF'},
+                        {label: 'Burundi		   	        ',  value: 'BI'},
+                        {label: 'Cambodia		   	        ',  value: 'KH'},
+                        {label: 'Cameroon		   	        ',  value: 'CM'},
+                        {label: 'Canada		   	            ',  value: 'CA'},
+                        {label: 'Cape Verde		   	        ',  value: 'CV'},
+                        {label: 'Cayman Islands		   	    ',  value: 'KY'},
+                        {label: 'Central African Republic',     value: 'CF'},
+                        {label: 'Chad		   	   	        ',  value: 'TD'},
+                        {label: 'Chile		   	            ',  value: 'CL'},
+                        {label: 'China		   	            ',  value: 'CN'},
+                        {label: 'Christmas Island	        ',  value: 'CX'},
+                        {label: 'Cocos Islands		        ',  value: 'CC'},
+                        {label: 'Colombia		   	        ',  value: 'CO'},
+                        {label: 'Comoros		   	        ',  value: 'KM'},
+                        {label: 'Cook Islands		        ',  value: 'CK'},
+                        {label: 'Costa Rica		   	        ',  value: 'CR'},
+                        {label: 'Croatia		   	        ',  value: 'HR'},
+                        {label: 'Cuba			   	        ',  value: 'CU'},
+                        {label: 'Curacao		   	        ',  value: 'CW'},
+                        {label: 'Cyprus		   	            ',  value: 'CY'},
+                        {label: 'Czech Republic		   	    ',  value: 'CZ'},
+                        {label: 'Democratic Republic of the Congo',    value: 'CD'},
+                        {label: 'Denmark			   	    ',  value: 'DK'},
+                        {label: 'Djibouti		   	        ',  value: 'DJ'},
+                        {label: 'Dominica		   	        ',  value: 'DM'},
+                        {label: 'Dominican Republic		   	',  value: 'DO'},
+                        {label: 'East Timor		   	        ',  value: 'TL'},
+                        {label: 'Ecuador			   	    ',  value: 'EC'},
+                        {label: 'Egypt			   	        ',  value: 'EG'},
+                        {label: 'El Salvador		   	    ',  value: 'SV'},
+                        {label: 'Equatorial Guinea		   	',  value: 'GQ'},
+                        {label: 'Eritrea			   	    ',  value: 'ER'},
+                        {label: 'Estonia			   	    ',  value: 'EE'},
+                        {label: 'Ethiopia		   	        ',  value: 'ET'},
+                        {label: 'Falkland Islands		   	',  value: 'FK'},
+                        {label: 'Faroe Islands		   	    ',  value: 'FO'},
+                        {label: 'Fiji			   	        ',  value: 'FJ'},
+                        {label: 'Finland			   	    ',  value: 'FI'},
+                        {label: 'France			   	        ',  value: 'FR'},
+                        {label: 'French Polynesia		    ',  value: 'PF'},
+                        {label: 'Gabon			   	        ',  value: 'GA'},
+                        {label: 'Gambia			   	        ',  value: 'GM'},
+                        {label: 'Georgia			   	    ',  value: 'GE'},
+                        {label: 'Germany			   	    ',  value: 'DE'},
+                        {label: 'Ghana			   	        ',  value: 'GH'},
+                        {label: 'Gibraltar		   	        ',  value: 'GI'},
+                        {label: 'Greece			   	        ',  value: 'GR'},
+                        {label: 'Greenland			   	    ',  value: 'GL'},
+                        {label: 'Grenada			   	    ',  value: 'GD'},
+                        {label: 'Guam			   	        ',  value: 'GU'},
+                        {label: 'Guatemala			   	    ',  value: 'GT'},
+                        {label: 'Guernsey			   	    ',  value: 'GG'},
+                        {label: 'Guinea			   	        ',  value: 'GN'},
+                        {label: 'Guinea-Bissau		   	    ',  value: 'GW'},
+                        {label: 'Guyana		   	            ',  value: 'GY'},
+                        {label: 'Haiti		   	            ',  value: 'HT'},
+                        {label: 'Honduras		   	   	    ',  value: 'HN'},
+                        {label: 'Hong Kong		   	   	    ',  value: 'HK'},
+                        {label: 'Hungary			   	    ',  value: 'HU'},
+                        {label: 'Iceland			   	    ',  value: 'IS'},
+                        {label: 'India			   	        ',  value: 'IN'},
+                        {label: 'Indonesia			   	    ',  value: 'ID'},
+                        {label: 'Iran			   	        ',  value: 'IR'},
+                        {label: 'Iraq			   	        ',  value: 'IQ'},
+                        {label: 'Ireland			   	    ',  value: 'IE'},
+                        {label: 'Isle of Man		   	    ',  value: 'IM'},
+                        {label: 'Israel			   	        ',  value: 'IL'},
+                        {label: 'Italy			   	        ',  value: 'IT'},
+                        {label: 'Ivory Coast		   	    ',  value: 'CI'},
+                        {label: 'Jamaica			   	    ',  value: 'JM'},
+                        {label: 'Japan			   	        ',  value: 'JP'},
+                        {label: 'Jersey			   	        ',  value: 'JE'},
+                        {label: 'Jordan			   	        ',  value: 'JO'},
+                        {label: 'Kazakhstan			   	    ',  value: 'KZ'},
+                        {label: 'Kenya			   	        ',  value: 'KE'},
+                        {label: 'Kiribati			   	    ',  value: 'KI'},
+                        {label: 'Kosovo			   	        ',  value: 'XK'},
+                        {label: 'Kuwait			   	        ',  value: 'KW'},
+                        {label: 'Kyrgyzstan		   	   	    ',  value: 'KG'},
+                        {label: 'Laos			   	        ',  value: 'LA'},
+                        {label: 'Latvia			   	        ',  value: 'LV'},
+                        {label: 'Lebanon			   	    ',  value: 'LB'},
+                        {label: 'Lesotho			   	    ',  value: 'LS'},
+                        {label: 'Liberia			   	    ',  value: 'LR'},
+                        {label: 'Libya			   	        ',  value: 'LY'},
+                        {label: 'Liechtenstein		   	   	',  value: 'LI'},
+                        {label: 'Lithuania		   	   	    ',  value: 'LT'},
+                        {label: 'Luxembourg			   	   	',  value: 'LU'},
+                        {label: 'Macau			   	        ',  value: 'MO'},
+                        {label: 'Macedonia			   	    ',  value: 'MK'},
+                        {label: 'Madagascar			   	    ',  value: 'MG'},
+                        {label: 'Malawi			   	        ',  value: 'MW'},
+                        {label: 'Malaysia			   	    ',  value: 'MY'},
+                        {label: 'Maldives			   	    ',  value: 'MV'},
+                        {label: 'Mali			   	        ',  value: 'ML'},
+                        {label: 'Malta			   	        ',  value: 'MT'},
+                        {label: 'Marshall Islands		    ',  value: 'MH'},
+                        {label: 'Mauritania		   	   	    ',  value: 'MR'},
+                        {label: 'Mauritius		   	   	    ',  value: 'MU'},
+                        {label: 'Mayotte		   	        ',  value: 'YT'},
+                        {label: 'Mexico		   	            ',  value: 'MX'},
+                        {label: 'Micronesia		   	        ',  value: 'FM'},
+                        {label: 'Moldova		   	        ',  value: 'MD'},
+                        {label: 'Monaco		   	            ',  value: 'MC'},
+                        {label: 'Mongolia			   	    ',  value: 'MN'},
+                        {label: 'Montenegro			   	    ',  value: 'ME'},
+                        {label: 'Montserrat		   	        ',  value: 'MS'},
+                        {label: 'Morocco		   	        ',  value: 'MA'},
+                        {label: 'Mozambique		   	        ',  value: 'MZ'},
+                        {label: 'Myanmar		   	        ',  value: 'MM'},
+                        {label: 'Namibia		   	        ',  value: 'NA'},
+                        {label: 'Nauru			   	        ',  value: 'NR'},
+                        {label: 'Nepal			   	        ',  value: 'NP'},
+                        {label: 'Netherlands		   	    ',  value: 'NL'},
+                        {label: 'Netherlands Antilles	    ',  value: 'AN'},
+                        {label: 'New Caledonia		   	    ',  value: 'NC'},
+                        {label: 'New Zealand		   	    ',  value: 'NZ'},
+                        {label: 'Nicaragua		   	   	    ',  value: 'NI'},
+                        {label: 'Niger			   	        ',  value: 'NE'},
+                        {label: 'Nigeria			   	    ',  value: 'NG'},
+                        {label: 'Niue			   	        ',  value: 'NU'},
+                        {label: 'North Korea			    ',  value: 'KP'},
+                        {label: 'Northern Mariana Islands',     value: 'MP'},
+                        {label: 'Norway			   	        ',  value: 'NO'},
+                        {label: 'Oman			   	         ', value: 'OM'},
+                        {label: 'Pakistan		   	   	      ', value: 'PK'},
+                        {label: 'Palau		   	   	         ', value: 'PW'},
+                        {label: 'Palestine		   	   	     ', value: 'PS'},
+                        {label: 'Panama		   	   	        ', value: 'PA'},
+                        {label: 'Papua New Guinea		   	  ', value: 'PG'},
+                        {label: 'Paraguay		   	   	      ', value: 'PY'},
+                        {label: 'Peru		   	              ', value: 'PE'},
+                        {label: 'Philippines		           ', value: 'PH'},
+                        {label: 'Pitcairn			   	         ', value: 'PN'},
+                        {label: 'Poland		   	            ', value: 'PL'},
+                        {label: 'Portugal		   	   	      ', value: 'PT'},
+                        {label: 'Puerto Rico		   	   	   ', value: 'PR'},
+                        {label: 'Qatar		   	   	         ', value: 'QA'},
+                        {label: 'Republic of the Congo		 ', value: 'CG'},
+                        {label: 'Reunion		   	   	       ', value: 'RE'},
+                        {label: 'Romania		   	   	       ', value: 'RO'},
+                        {label: 'Russia		   	            ', value: 'RU'},
+                        {label: 'Rwanda		   	   	        ', value: 'RW'},
+                        {label: 'Saint Barthelemy			   	 ', value: 'BL'},
+                        {label: 'Saint Helena			   	   	 ', value: 'SH'},
+                        {label: 'Saint Kitts and Nevis			', value: 'KN'},
+                        {label: 'Saint Lucia			   	   		 ', value: 'LC'},
+                        {label: 'Saint Martin			   	   	 ', value: 'MF'},
+                        {label: 'Saint Pierre and Miquelon', value: 'PM'},
+                        {label: 'Saint Vincent and the Grenadines', value: 'VC'},
+                        {label: 'Samoa			   	   	        ', value: 'WS'},
+                        {label: 'San Marino		   	   		   ', value: 'SM'},
+                        {label: 'Sao Tome and Principe		 ', value: 'ST'},
+                        {label: 'Saudi Arabia		   	   	  ', value: 'SA'},
+                        {label: 'Senegal		   	   		      ', value: 'SN'},
+                        {label: 'Serbia		   	   		       ', value: 'RS'},
+                        {label: 'Seychelles		   	   		   ', value: 'SC'},
+                        {label: 'Sierra Leone		   	   		 ', value: 'SL'},
+                        {label: 'Singapore		   	   		    ', value: 'SG'},
+                        {label: 'Sint Maarten		   	   	  ', value: 'SX'},
+                        {label: 'Slovakia			   	   	     ', value: 'SK'},
+                        {label: 'Slovenia			   	   	     ', value: 'SI'},
+                        {label: 'Solomon Islands			   	  ', value: 'SB'},
+                        {label: 'Somalia			   	   	      ', value: 'SO'},
+                        {label: 'South Africa			   	   	 ', value: 'ZA'},
+                        {label: 'South Korea			   	   	  ', value: 'KR'},
+                        {label: 'South Sudan			   	   	  ', value: 'SS'},
+                        {label: 'Spain			   	   	        ', value: 'ES'},
+                        {label: 'Sri Lanka			   	   	    ', value: 'LK'},
+                        {label: 'Sudan			   	   	        ', value: 'SD'},
+                        {label: 'Suriname			   	   	     ', value: 'SR'},
+                        {label: 'Svalbard and Jan Mayen		', value: 'SJ'},
+                        {label: 'Swaziland			   	   	    ', value: 'SZ'},
+                        {label: 'Sweden			   	   	       ', value: 'SE'},
+                        {label: 'Switzerland			   	   	  ', value: 'CH'},
+                        {label: 'Syria		   	    	        ', value: 'SY'},
+                        {label: 'Taiwan		   	    	       ', value: 'TW'},
+                        {label: 'Tajikistan			   	   	   ', value: 'TJ'},
+                        {label: 'Tanzania			   	   	     ', value: 'TZ'},
+                        {label: 'Thailand			   	   	     ', value: 'TH'},
+                        {label: 'Togo			   	   	         ', value: 'TG'},
+                        {label: 'Tokelau			   	   	      ', value: 'TK'},
+                        {label: 'Tonga			   	   	        ', value: 'TO'},
+                        {label: 'Trinidad and Tobago			  ', value: 'TT'},
+                        {label: 'Tunisia			   	   	      ', value: 'TN'},
+                        {label: 'Turkey			   	   	       ', value: 'TR'},
+                        {label: 'Turkmenistan			   	   	 ', value: 'TM'},
+                        {label: 'Turks and Caicos Islands', value: 'TC'},
+                        {label: 'Tuvalu			   	   	       ', value: 'TV'},
+                        {label: 'U.S. Virgin Islands			  ', value: 'VI'},
+                        {label: 'Uganda			   	   	       ', value: 'UG'},
+                        {label: 'Ukraine			   	   	      ', value: 'UA'},
+                        {label: 'United Arab Emirates			 ', value: 'AE'},
+                        {label: 'United Kingdom			   	   ', value: 'GB'},
+                        {label: 'United States			   	    ', value: 'US'},
+                        {label: 'Uruguay			   	   	      ', value: 'UY'},
+                        {label: 'Uzbekistan		   	   	    ', value: 'UZ'},
+                        {label: 'Vanuatu			   	   	      ', value: 'VU'},
+                        {label: 'Vatican			   	   	      ', value: 'VA'},
+                        {label: 'Venezuela			   	   	    ', value: 'VE'},
+                        {label: 'Vietnam			   	   	      ', value: 'VN'},
+                        {label: 'Wallis and Futuna			   	', value: 'WF'},
+                        {label: 'Western Sahara			   	   ', value: 'EH'},
+                        {label: 'Yemen			   	   	        ', value: 'YE'},
+                        {label: 'Zambia			   	   	       ', value: 'ZM'},
+                        {label: 'Zimbabwe			   	   	     ', value: 'ZW'}
                     ]}
-                    placeholder={{label:"Country ISO Code",value:null}}
+                    placeholder={{label:"Select a Country",value:null}}
         />
             </View>
         )
     }
 }
 
-// Afghanistan	   	            AF / AFG
-// Albania	   	                ALB
-// Algeria	   	                DZA
-// American Samoa		   	    AS / ASM
-// Andorra			   	   AD / AND
-// Angola		   	   AO / AGO
-// Anguilla		   	   AI / AIA
-// Antarctica		   	   AQ / ATA
-// Antigua and Barbuda		   	   AG / ATG
-// Argentina		   	   AR / ARG
-// Armenia		   	   AM / ARM
-// Aruba		   	   AW / ABW
-// Australia		   	   AU / AUS
-// Austria		   	   AT / AUT
-// Azerbaijan		   	   994	AZ / AZE
-// Bahamas		   	   BS / BHS
-// Bahrain		   	   BH / BHR
-// Bangladesh		   	   BD / BGD
-// Barbados		   	   BB / BRB
-// Belarus			   	   BY / BLR
-// Belgium			   	   BE / BEL
-// Belize			   	   BZ / BLZ
-// Benin			   	   BJ / BEN
-// Bermuda			   	   BM / BMU
-// Bhutan			   	   	BT / BTN
-// Bolivia			   	   	BO / BOL
-// Bosnia and Herzegovina		   	   BA / BIH
-// Botswana		   	   BW / BWA
-// Brazil		   	   BR / BRA
-// British Indian Ocean Territory		   	   IO / IOT
-// British Virgin Islands		   	   VG / VGB
-// Brunei		   	   BN / BRN
-// Bulgaria		   	   BG / BGR
-// Burkina Faso		   	   BF / BFA
-// Burundi		   	   BI / BDI
-// Cambodia		   	   KH / KHM
-// Cameroon		   	   CM / CMR
-// Canada		   	   CA / CAN
-// Cape Verde		   	   CV / CPV
-// Cayman Islands		   	   KY / CYM
-// Central African Republic		   	   CF / CAF
-// Chad		   	   	TD / TCD
-// Chile		   	   CL / CHL
-// China		   	   CN / CHN
-// Christmas Island		   	   CX / CXR
-// Cocos Islands		   	   CC / CCK
-// Colombia		   	   CO / COL
-// Comoros		   	   KM / COM
-// Cook Islands		   	   CK / COK
-// Costa Rica		   	   CR / CRI
-// Croatia		   	   HR / HRV
-// Cuba			   	   CU / CUB
-// Curacao		   	   CW / CUW
-// Cyprus		   	   CY / CYP
-// Czech Republic		   	   CZ / CZE
-// Democratic Republic of the Congo		   	   CD / COD
-// Denmark			   	   DK / DNK
-// Djibouti		   	   DJ / DJI
-// Dominica		   	   DM / DMA
-// Dominican Republic		   	   DO / DOM
-// East Timor		   	   TL / TLS
-// Ecuador			   	   EC / ECU
-// Egypt			   	   EG / EGY
-// El Salvador		   	   SV / SLV
-// Equatorial Guinea		   	   	GQ / GNQ
-// Eritrea			   	   ER / ERI
-// Estonia			   	   EE / EST
-// Ethiopia		   	   ET / ETH
-// Falkland Islands		   	   FK / FLK
-// Faroe Islands		   	   FO / FRO
-// Fiji			   	   FJ / FJI
-// Finland			   	   FI / FIN
-// France			   	   FR / FRA
-// French Polynesia		   	   	PF / PYF
-// Gabon			   	   GA / GAB
-// Gambia			   	   GM / GMB
-// Georgia			   	   GE / GEO
-// Germany			   	   DE / DEU
-// Ghana			   	   GH / GHA
-// Gibraltar		   	   GI / GIB
-// Greece			   	   GR / GRC
-// Greenland			   	   GL / GRL
-// Grenada			   	   GD / GRD
-// Guam			   	   GU / GUM
-// Guatemala			   	   GT / GTM
-// Guernsey			   	   GG / GGY
-// Guinea			   	   GN / GIN
-// Guinea-Bissau		   	   GW / GNB
-// Guyana		   	   GY / GUY
-// Haiti		   	   HT / HTI
-// Honduras		   	   	HN / HND
-// Hong Kong		   	   	HK / HKG
-// Hungary			   	   HU / HUN
-// Iceland			   	   IS / ISL
-// India			   	   IN / IND
-// Indonesia			   	   ID / IDN
-// Iran			   	   IR / IRN
-// Iraq			   	   IQ / IRQ
-// Ireland			   	   IE / IRL
-// Isle of Man		   	   IM / IMN
-// Israel			   	   IL / ISR
-// Italy			   	   IT / ITA
-// Ivory Coast		   	   CI / CIV
-// Jamaica			   	   JM / JAM
-// Japan			   	   JP / JPN
-// Jersey			   	   JE / JEY
-// Jordan			   	   JO / JOR
-// Kazakhstan			   	   KZ / KAZ
-// Kenya			   	   KE / KEN
-// Kiribati			   	   KI / KIR
-// Kosovo			   	   XK / XKX
-// Kuwait			   	   KW / KWT
-// Kyrgyzstan		   	   	KG / KGZ
-// Laos			   	   LA / LAO
-// Latvia			   	   LV / LVA
-// Lebanon			   	   LB / LBN
-// Lesotho			   	   LS / LSO
-// Liberia			   	   LR / LBR
-// Libya			   	   LY / LBY
-// Liechtenstein		   	   	LI / LIE
-// Lithuania		   	   	LT / LTU
-// Luxembourg			   	   	LU / LUX
-// Macau			   	   MO / MAC
-// Macedonia			   	   MK / MKD
-// Madagascar			   	   MG / MDG
-// Malawi			   	   MW / MWI
-// Malaysia			   	   MY / MYS
-// Maldives			   	   MV / MDV
-// Mali			   	   ML / MLI
-// Malta			   	   MT / MLT
-// Marshall Islands			   	   MH / MHL
-// Mauritania		   	   	MR / MRT
-// Mauritius		   	   	MU / MUS
-// Mayotte		   	   YT / MYT
-// Mexico		   	   MX / MEX
-// Micronesia		   	   FM / FSM
-// Moldova		   	   MD / MDA
-// Monaco		   	   MC / MCO
-// Mongolia			   	   	MN / MNG
-// Montenegro			   	   	ME / MNE
-// Montserrat		   	   MS / MSR
-// Morocco		   	   MA / MAR
-// Mozambique		   	   MZ / MOZ
-// Myanmar		   	   MM / MMR
-// Namibia		   	   NA / NAM
-// Nauru			   	   NR / NRU
-// Nepal			   	   NP / NPL
-// Netherlands		   	   	NL / NLD
-// Netherlands Antilles		   	   	AN / ANT
-// New Caledonia		   	   NC / NCL
-// New Zealand		   	   	NZ / NZL
-// Nicaragua		   	   	NI / NIC
-// Niger			   	   NE / NER
-// Nigeria			   	   NG / NGA
-// Niue			   	   NU / NIU
-// North Korea			   	   KP / PRK
-// Northern Mariana Islands		   	   MP / MNP
-// Norway			   	   NO / NOR
-// Oman			   	   OM / OMN
-// Pakistan		   	   	PK / PAK
-// Palau		   	   	PW / PLW
-// Palestine		   	   	PS / PSE
-// Panama		   	   	PA / PAN
-// Papua New Guinea		   	   	PG / PNG
-// Paraguay		   	   	PY / PRY
-// Peru		   	   	PE / PER
-// Philippines		   	   PH / PHL
-// Pitcairn			   	   PN / PCN
-// Poland		   	   PL / POL
-// Portugal		   	   	PT / PRT
-// Puerto Rico		   	   	PR / PRI
-// Qatar		   	   	QA / QAT
-// Republic of the Congo		   	   	CG / COG
-// Reunion		   	   	RE / REU
-// Romania		   	   	RO / ROU
-// Russia		   	   RU / RUS
-// Rwanda		   	   	RW / RWA
-// Saint Barthelemy			   	   		BL / BLM
-// Saint Helena			   	   	SH / SHN
-// Saint Kitts and Nevis			   	   	KN / KNA
-// Saint Lucia			   	   		LC / LCA
-// Saint Martin			   	   	MF / MAF
-// Saint Pierre and Miquelon			   	   	PM / SPM
-// Saint Vincent and the Grenadines			   	   	VC / VCT
-// Samoa			   	   	WS / WSM
-// San Marino		   	   		SM / SMR
-// Sao Tome and Principe		   	   		ST / STP
-// Saudi Arabia		   	   	SA / SAU
-// Senegal		   	   		SN / SEN
-// Serbia		   	   		RS / SRB
-// Seychelles		   	   		SC / SYC
-// Sierra Leone		   	   		SL / SLE
-// Singapore		   	   		SG / SGP
-// Sint Maarten		   	   	SX / SXM
-// Slovakia			   	   	SK / SVK
-// Slovenia			   	   	SI / SVN
-// Solomon Islands			   	   	SB / SLB
-// Somalia			   	   	SO / SOM
-// South Africa			   	   	ZA / ZAF
-// South Korea			   	   	KR / KOR
-// South Sudan			   	   	SS / SSD
-// Spain			   	   	ES / ESP
-// Sri Lanka			   	   	LK / LKA
-// Sudan			   	   	SD / SDN
-// Suriname			   	   	SR / SUR
-// Svalbard and Jan Mayen		   	   		SJ / SJM
-// Swaziland			   	   	SZ / SWZ
-// Sweden			   	   	SE / SWE
-// Switzerland			   	   	CH / CHE
-// Syria		   	    	SY / SYR
-// Taiwan		   	    	TW / TWN
-// Tajikistan			   	   	TJ / TJK
-// Tanzania			   	   	TZ / TZA
-// Thailand			   	   	TH / THA
-// Togo			   	   	TG / TGO
-// Tokelau			   	   	TK / TKL
-// Tonga			   	   	TO / TON
-// Trinidad and Tobago			   	   	TT / TTO
-// Tunisia			   	   	TN / TUN
-// Turkey			   	   	TR / TUR
-// Turkmenistan			   	   	TM / TKM
-// Turks and Caicos Islands			   	   	TC / TCA
-// Tuvalu			   	   	TV / TUV
-// U.S. Virgin Islands			   	   	VI / VIR
-// Uganda			   	   	UG / UGA
-// Ukraine			   	   	UA / UKR
-// United Arab Emirates			   	   	AE / ARE
-// United Kingdom			   	   	GB / GBR
-// United States			   	   	US / USA
-// Uruguay			   	   	UY / URY
-// Uzbekistan		   	   	UZ / UZB
-// Vanuatu			   	   	VU / VUT
-// Vatican			   	   	VA / VAT
-// Venezuela			   	   	VE / VEN
-// Vietnam			   	   	VN / VNM
-// Wallis and Futuna			   	   	WF / WLF
-// Western Sahara			   	   	EH / ESH
-// Yemen			   	   	YE / YEM
-// Zambia			   	   	ZM / ZMB
-// Zimbabwe			   	   	ZW / ZWE
+// {label: 'Afghanistan	   	        ', value: '            AF / AFG'},
+// {label: 'Albania	   	            ', value: '            AL / ALB'},
+// {label: 'Algeria	   	            ', value: '            DZ / DZA'},
+// {label: 'American Samoa		   	    ', value: '        AS / ASM'},
+// {label: 'Andorra			   	          ', value: '      AD / AND'},
+// {label: 'Angola		   	            ', value: '        AO / AGO'},
+// {label: 'Anguilla		   	          ', value: '      AI / AIA'},
+// {label: 'Antarctica		   	        ', value: '        AQ / ATA'},
+// {label: 'Antigua and Barbuda		   ', value: '	        AG / ATG'},
+// {label: 'Argentina		   	         ', value: '       AR / ARG'},
+// {label: 'Armenia		   	           ', value: '         AM / ARM'},
+// {label: 'Aruba		   	             ', value: '       AW / ABW'},
+// {label: 'Australia		   	         ', value: '       AU / AUS'},
+// {label: 'Austria		   	           ', value: '         AT / AUT'},
+// {label: 'Azerbaijan		   	       	', value: '        AZ / AZE'},
+// {label: 'Bahamas		   	           ', value: '         BS / BHS'},
+// {label: 'Bahrain		   	           ', value: '         BH / BHR'},
+// {label: 'Bangladesh		   	        ', value: '        BD / BGD'},
+// {label: 'Barbados		   	          ', value: '          BB / BRB'},
+// {label: 'Belarus			   	          ', value: '      BY / BLR'},
+// {label: 'Belgium			   	          ', value: '      BE / BEL'},
+// {label: 'Belize			   	           ', value: '     BZ / BLZ'},
+// {label: 'Benin			   	            ', value: '    BJ / BEN'},
+// {label: 'Bermuda			   	          ', value: '      BM / BMU'},
+// {label: 'Bhutan			   	           ', value: '     BT / BTN'},
+// {label: 'Bolivia			   	          ', value: '      BO / BOL'},
+// {label: 'Bosnia and Herzegovina		', value: '        BA / BIH'},
+// {label: 'Botswana		   	          ', value: '          BW / BWA'},
+// {label: 'Brazil		   	            ', value: '        BR / BRA'},
+// {label: 'British Indian Ocean Ter', value: 'ritory		IO / IOT'},
+// {label: 'British Virgin Islands		', value: '   	    VG / VGB'},
+// {label: 'Brunei		   	            ', value: '        BN / BRN'},
+// {label: 'Bulgaria		   	          ', value: '          BG / BGR'},
+// {label: 'Burkina Faso		          ', value: '          BF / BFA'},
+// {label: 'Burundi		   	           ', value: '         BI / BDI'},
+// {label: 'Cambodia		   	          ', value: '          KH / KHM'},
+// {label: 'Cameroon		   	          ', value: '          CM / CMR'},
+// {label: 'Canada		   	            ', value: '        CA / CAN'},
+// {label: 'Cape Verde		   	        ', value: '        CV / CPV'},
+// {label: 'Cayman Islands		   	    ', value: '        KY / CYM'},
+// {label: 'Central African Republic', value: '		   	    CF / CAF'},
+// {label: 'Chad		   	   	          ', value: '          TD / TCD'},
+// {label: 'Chile		   	             ', value: '       CL / CHL'},
+// {label: 'China		   	             ', value: '       CN / CHN'},
+// {label: 'Christmas Island		   	  ', value: '          CX / CXR'},
+// {label: 'Cocos Islands		   	     ', value: '       CC / CCK'},
+// {label: 'Colombia		   	          ', value: '          CO / COL'},
+// {label: 'Comoros		   	           ', value: '         KM / COM},
+// {label: 'Cook Islands		   	      ', value: '          CK / COK'},
+// {label: 'Costa Rica		   	        ', value: '        CR / CRI'},
+// {label: 'Croatia		   	           ', value: '         HR / HRV'},
+// {label: 'Cuba			   	             ', value: '       CU / CUB'},
+// {label: 'Curacao		   	           ', value: '         CW / CUW'},
+// {label: 'Cyprus		   	            ', value: '        CY / CYP'},
+// {label: 'Czech Republic		   	    ', value: '        CZ / CZE'},
+// {label: 'Democratic Republic of t', value: 'he Congo		CD / COD'},
+// {label: 'Denmark			   	          ', value: '      DK / DNK'},
+// {label: 'Djibouti		   	          ', value: '          DJ / DJI'},
+// {label: 'Dominica		   	          ', value: '          DM / DMA'},
+// {label: 'Dominican Republic		   	', value: '        DO / DOM'},
+// {label: 'East Timor		   	        ', value: '        TL / TLS'},
+// {label: 'Ecuador			   	          ', value: '      EC / ECU'},
+// {label: 'Egypt			   	            ', value: '    EG / EGY'},
+// {label: 'El Salvador		   	       ', value: '         SV / SLV'},
+// {label: 'Equatorial Guinea		   	 ', value: '  	    GQ / GNQ'},
+// {label: 'Eritrea			   	          ', value: '      ER / ERI'},
+// {label: 'Estonia			   	          ', value: '      EE / EST'},
+// {label: 'Ethiopia		   	          ', value: '          ET / ETH'},
+// {label: 'Falkland Islands		   	  ', value: '          FK / FLK'},
+// {label: 'Faroe Islands		   	     ', value: '       FO / FRO'},
+// {label: 'Fiji			   	             ', value: '       FJ / FJI'},
+// {label: 'Finland			   	          ', value: '      FI / FIN'},
+// {label: 'France			   	           ', value: '     FR / FRA'},
+// {label: 'French Polynesia		   	  ', value: ' 	        PF / PYF'},
+// {label: 'Gabon			   	            ', value: '    GA / GAB'},
+// {label: 'Gambia			   	           ', value: '     GM / GMB'},
+// {label: 'Georgia			   	          ', value: '      GE / GEO'},
+// {label: 'Germany			   	          ', value: '      DE / DEU'},
+// {label: 'Ghana			   	            ', value: '    GH / GHA'},
+// {label: 'Gibraltar		   	         ', value: '       GI / GIB'},
+// {label: 'Greece			   	           ', value: '     GR / GRC'},
+// {label: 'Greenland			   	        ', value: '    GL / GRL'},
+// {label: 'Grenada			   	          ', value: '      GD / GRD'},
+// {label: 'Guam			   	             ', value: '       GU / GUM'},
+// {label: 'Guatemala			   	        ', value: '    GT / GTM'},
+// {label: 'Guernsey			   	         ', value: '       GG / GGY'},
+// {label: 'Guinea			   	           ', value: '     GN / GIN'},
+// {label: 'Guinea-Bissau		   	     ', value: '       GW / GNB'},
+// {label: 'Guyana		   	            ', value: '        GY / GUY'},
+// {label: 'Haiti		   	             ', value: '       HT / HTI'},
+// {label: 'Honduras		   	   	      ', value: '          HN / HND'},
+// {label: 'Hong Kong		   	   	     ', value: '       HK / HKG'},
+// {label: 'Hungary			   	          ', value: '      HU / HUN'},
+// {label: 'Iceland			   	          ', value: '      IS / ISL'},
+// {label: 'India			   	            ', value: '    IN / IND'},
+// {label: 'Indonesia			   	        ', value: '    ID / IDN'},
+// {label: 'Iran			   	             ', value: '       IR / IRN'},
+// {label: 'Iraq			   	             ', value: '       IQ / IRQ'},
+// {label: 'Ireland			   	          ', value: '      IE / IRL'},
+// {label: 'Isle of Man		   	       ', value: '         IM / IMN'},
+// {label: 'Israel			   	           ', value: '     IL / ISR'},
+// {label: 'Italy			   	            ', value: '    IT / ITA'},
+// {label: 'Ivory Coast		   	       ', value: '         CI / CIV'},
+// {label: 'Jamaica			   	          ', value: '      JM / JAM'},
+// {label: 'Japan			   	            ', value: '    JP / JPN'},
+// {label: 'Jersey			   	           ', value: '     JE / JEY'},
+// {label: 'Jordan			   	           ', value: '     JO / JOR'},
+// {label: 'Kazakhstan			   	       ', value: '     KZ / KAZ'},
+// {label: 'Kenya			   	            ', value: '    KE / KEN'},
+// {label: 'Kiribati			   	         ', value: '       KI / KIR'},
+// {label: 'Kosovo			   	           ', value: '     XK / XKX'},
+// {label: 'Kuwait			   	           ', value: '     KW / KWT'},
+// {label: 'Kyrgyzstan		   	   	    ', value: '        KG / KGZ'},
+// {label: 'Laos			   	             ', value: '       LA / LAO'},
+// {label: 'Latvia			   	           ', value: '     LV / LVA'},
+// {label: 'Lebanon			   	          ', value: '      LB / LBN'},
+// {label: 'Lesotho			   	          ', value: '      LS / LSO'},
+// {label: 'Liberia			   	          ', value: '      LR / LBR'},
+// {label: 'Libya			   	            ', value: '    LY / LBY'},
+// {label: 'Liechtenstein		   	   	 ', value: '       LI / LIE'},
+// {label: 'Lithuania		   	   	     ', value: '       LT / LTU'},
+// {label: 'Luxembourg			   	   	   ', value: '     LU / LUX'},
+// {label: 'Macau			   	            ', value: '    MO / MAC'},
+// {label: 'Macedonia			   	        ', value: '    MK / MKD'},
+// {label: 'Madagascar			   	       ', value: '     MG / MDG'},
+// {label: 'Malawi			   	           ', value: '     MW / MWI'},
+// {label: 'Malaysia			   	         ', value: '       MY / MYS'},
+// {label: 'Maldives			   	         ', value: '       MV / MDV'},
+// {label: 'Mali			   	             ', value: '       ML / MLI'},
+// {label: 'Malta			   	            ', value: '    MT / MLT'},
+// {label: 'Marshall Islands			   	 ', value: '       MH / MHL'},
+// {label: 'Mauritania		   	   	    ', value: '        MR / MRT'},
+// {label: 'Mauritius		   	   	     ', value: '       MU / MUS'},
+// {label: 'Mayotte		   	           ', value: '         YT / MYT'},
+// {label: 'Mexico		   	            ', value: '        MX / MEX'},
+// {label: 'Micronesia		   	        ', value: '        FM / FSM'},
+// {label: 'Moldova		   	           ', value: '         MD / MDA'},
+// {label: 'Monaco		   	            ', value: '        MC / MCO'},
+// {label: 'Mongolia			   	   	     ', value: '       MN / MNG'},
+// {label: 'Montenegro			   	   	   ', value: '     ME / MNE'},
+// {label: 'Montserrat		   	        ', value: '        MS / MSR'},
+// {label: 'Morocco		   	           ', value: '         MA / MAR'},
+// {label: 'Mozambique		   	        ', value: '        MZ / MOZ'},
+// {label: 'Myanmar		   	           ', value: '         MM / MMR'},
+// {label: 'Namibia		   	           ', value: '         NA / NAM'},
+// {label: 'Nauru			   	            ', value: '    NR / NRU'},
+// {label: 'Nepal			   	            ', value: '    NP / NPL'},
+// {label: 'Netherlands		   	       ', value: '         NL / NLD'},
+// {label: 'Netherlands Antilles		  ', value: ' 	   	    AN / ANT'},
+// {label: 'New Caledonia		   	     ', value: '       NC / NCL'},
+// {label: 'New Zealand		   	   	   ', value: '         NZ / NZL'},
+// {label: 'Nicaragua		   	   	     ', value: '       NI / NIC'},
+// {label: 'Niger			   	            ', value: '    NE / NER'},
+// {label: 'Nigeria			   	          ', value: '      NG / NGA'},
+// {label: 'Niue			   	             ', value: '       NU / NIU'},
+// {label: 'North Korea			   	      ', value: '      KP / PRK'},
+// {label: 'Northern Mariana Islands', value: '		   	    MP / MNP'},
+// {label: 'Norway			   	           ', value: '     NO / NOR'},
+// {label: 'Oman			   	             ', value: '       OM / OMN'},
+// {label: 'Pakistan		   	   	      ', value: '          PK / PAK'},
+// {label: 'Palau		   	   	         ', value: '       PW / PLW'},
+// {label: 'Palestine		   	   	     ', value: '       PS / PSE'},
+// {label: 'Panama		   	   	        ', value: '        PA / PAN'},
+// {label: 'Papua New Guinea		   	  ', value: ' 	        PG / PNG'},
+// {label: 'Paraguay		   	   	      ', value: '          PY / PRY'},
+// {label: 'Peru		   	              ', value: '      	PE / PER'},
+// {label: 'Philippines		           ', value: '   	    PH / PHL'},
+// {label: 'Pitcairn			   	         ', value: '       PN / PCN'},
+// {label: 'Poland		   	            ', value: '        PL / POL'},
+// {label: 'Portugal		   	   	      ', value: '          PT / PRT'},
+// {label: 'Puerto Rico		   	   	   ', value: '         PR / PRI'},
+// {label: 'Qatar		   	   	         ', value: '       QA / QAT'},
+// {label: 'Republic of the Congo		 ', value: '  	   	CG / COG'},
+// {label: 'Reunion		   	   	       ', value: '         RE / REU'},
+// {label: 'Romania		   	   	       ', value: '         RO / ROU'},
+// {label: 'Russia		   	            ', value: '        RU / RUS'},
+// {label: 'Rwanda		   	   	        ', value: '        RW / RWA'},
+// {label: 'Saint Barthelemy			   	 ', value: '  		BL / BLM'},
+// {label: 'Saint Helena			   	   	 ', value: '       SH / SHN'},
+// {label: 'Saint Kitts and Nevis			', value: '   	KN / KNA'},
+// {label: 'Saint Lucia			   	   		 ', value: '   LC / LCA'},
+// {label: 'Saint Martin			   	   	 ', value: '       MF / MAF'},
+// {label: 'Saint Pierre and Miquelo', value: 'n			PM / SPM'},
+// {label: 'Saint Vincent and the Gr', value: 'enadines		VC / VCT'},
+// {label: 'Samoa			   	   	        ', value: '    WS / WSM'},
+// {label: 'San Marino		   	   		   ', value: '     SM / SMR'},
+// {label: 'Sao Tome and Principe		 ', value: '  	   	ST / STP'},
+// {label: 'Saudi Arabia		   	   	  ', value: '          SA / SAU'},
+// {label: 'Senegal		   	   		      ', value: '      SN / SEN'},
+// {label: 'Serbia		   	   		       ', value: '     RS / SRB'},
+// {label: 'Seychelles		   	   		   ', value: '     SC / SYC'},
+// {label: 'Sierra Leone		   	   		 ', value: '       SL / SLE'},
+// {label: 'Singapore		   	   		    ', value: '    SG / SGP'},
+// {label: 'Sint Maarten		   	   	  ', value: '          SX / SXM'},
+// {label: 'Slovakia			   	   	     ', value: '       SK / SVK'},
+// {label: 'Slovenia			   	   	     ', value: '       SI / SVN'},
+// {label: 'Solomon Islands			   	  ', value: ' 	    SB / SLB'},
+// {label: 'Somalia			   	   	      ', value: '      SO / SOM'},
+// {label: 'South Africa			   	   	 ', value: '       ZA / ZAF'},
+// {label: 'South Korea			   	   	  ', value: '      KR / KOR'},
+// {label: 'South Sudan			   	   	  ', value: '      SS / SSD'},
+// {label: 'Spain			   	   	        ', value: '    ES / ESP'},
+// {label: 'Sri Lanka			   	   	    ', value: '    LK / LKA'},
+// {label: 'Sudan			   	   	        ', value: '    SD / SDN'},
+// {label: 'Suriname			   	   	     ', value: '       SR / SUR'},
+// {label: 'Svalbard and Jan Mayen		', value: '   	   	SJ / SJM'},
+// {label: 'Swaziland			   	   	    ', value: '    SZ / SWZ'},
+// {label: 'Sweden			   	   	       ', value: '     SE / SWE'},
+// {label: 'Switzerland			   	   	  ', value: '      CH / CHE'},
+// {label: 'Syria		   	    	        ', value: '    SY / SYR'},
+// {label: 'Taiwan		   	    	       ', value: '     TW / TWN'},
+// {label: 'Tajikistan			   	   	   ', value: '     TJ / TJK'},
+// {label: 'Tanzania			   	   	     ', value: '       TZ / TZA'},
+// {label: 'Thailand			   	   	     ', value: '       TH / THA'},
+// {label: 'Togo			   	   	         ', value: '       TG / TGO'},
+// {label: 'Tokelau			   	   	      ', value: '      TK / TKL'},
+// {label: 'Tonga			   	   	        ', value: '    TO / TON'},
+// {label: 'Trinidad and Tobago			  ', value: ' 	   	TT / TTO'},
+// {label: 'Tunisia			   	   	      ', value: '      TN / TUN'},
+// {label: 'Turkey			   	   	       ', value: '     TR / TUR'},
+// {label: 'Turkmenistan			   	   	 ', value: '       TM / TKM'},
+// {label: 'Turks and Caicos Islands', value: '			   	TC / TCA'},
+// {label: 'Tuvalu			   	   	       ', value: '     TV / TUV'},
+// {label: 'U.S. Virgin Islands			  ', value: ' 	   	VI / VIR'},
+// {label: 'Uganda			   	   	       ', value: '     UG / UGA'},
+// {label: 'Ukraine			   	   	      ', value: '      UA / UKR'},
+// {label: 'United Arab Emirates			 ', value: '  	   	AE / ARE'},
+// {label: 'United Kingdom			   	   ', value: ' 	GB / GBR'},
+// {label: 'United States			   	    ', value: '	US / USA'},
+// {label: 'Uruguay			   	   	      ', value: '      UY / URY'},
+// {label: 'Uzbekistan		   	   	    ', value: '        UZ / UZB'},
+// {label: 'Vanuatu			   	   	      ', value: '      VU / VUT'},
+// {label: 'Vatican			   	   	      ', value: '      VA / VAT'},
+// {label: 'Venezuela			   	   	    ', value: '    VE / VEN'},
+// {label: 'Vietnam			   	   	      ', value: '      VN / VNM'},
+// {label: 'Wallis and Futuna			   	', value: '   	WF / WLF'},
+// {label: 'Western Sahara			   	   ', value: '	    EH / ESH'},
+// {label: 'Yemen			   	   	        ', value: '    YE / YEM'},
+// {label: 'Zambia			   	   	       ', value: '     ZM / ZMB'},
+// {label: 'Zimbabwe			   	   	     ', value: '       ZW / ZWE'}
